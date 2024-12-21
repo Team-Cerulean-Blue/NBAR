@@ -13,7 +13,7 @@ function hudmgr.handleNodeModule(mod)
         require(mod)(hudmgr.nodemgr,hudmgr.addNodeToHud)
         print("Successfully loaded module "..mod..".")
     end,function(err)
-        print("An error occured while trying to lode the \""..mod.."\" module.\n"..err)
+        print("An error occured while trying to load the \""..mod.."\" module.\n"..err)
     end)
 end
 
@@ -39,7 +39,7 @@ end
 function hudmgr.render(width,height)
     local mx,my = love.mouse.getPosition()
 
-    love.graphics.setColor(0.9529411764705882,0.9137254901960784,1,0.5)
+    love.graphics.setColor(node.color)
     love.graphics.rectangle("fill",width-hudWidth,0,hudWidth,height)
 
     local hovered = hudmgr.getHoveredElemIdx(mx,my)
