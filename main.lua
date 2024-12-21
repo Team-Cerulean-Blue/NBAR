@@ -61,9 +61,9 @@ end
 function love.draw()
     width, height = love.graphics.getDimensions()
 
-    love.graphics.clear(0.874509804,0.874509804,0.874509804)
-    love.graphics.setColor(0.5,0.5,0.5)
-    love.graphics.print('NBAR', width-40, height-20)
+    love.graphics.clear(0.211764706,0.2,0.223529412)
+    love.graphics.setColor(0.9,0.9,0.9)
+    love.graphics.print('NBAR - Node-Based Analog Renderer', width-40, height-20)
 
     nodemgr.drawNodes()
     
