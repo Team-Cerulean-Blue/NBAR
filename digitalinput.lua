@@ -14,7 +14,7 @@ return function(nodemgr,addNode)
     audioInputNode.id="digital-audio-input"
     audioInputNode.about="Node that returns a digital audio file inputted by the user."
     audioInputNode.outputs={nodemgr.ioElem.digital}
-    audioInputNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
+    audioInputNode.color={0.843137253,0.137,0.803921568627,0.2}
     addNode(audioInputNode)
 
     local AVInputNode = table.shallow_copy(nodemgr.nodeClass)
@@ -23,6 +23,6 @@ return function(nodemgr,addNode)
     AVInputNode.id="digital-audiovideo-input"
     AVInputNode.about="Node that returns a digital video file (output 1), and its corresponding audio track (output 2), inputted by the user."
     AVInputNode.outputs={nodemgr.ioElem.digital,nodemgr.ioElem.digital}
-    AVInputNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
+    AVInputNode.color={1,0.34,0.07,0.2}
     addNode(AVInputNode)
 end
