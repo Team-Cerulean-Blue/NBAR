@@ -33,7 +33,7 @@ function renderIO(type,x,y)
     end
 
     if(type==nodemgr.ioElem.digital) then
-        love.graphics.setColor(0,0,0)
+        love.graphics.setColor(1,1,1)
         love.graphics.rectangle("fill",x-4,y-6,8,12)
     elseif(type==nodemgr.ioElem.analog)     then circle(.5,.5,.5)
     elseif(type==nodemgr.ioElem.audioleft)  then circle(1,1,1)
