@@ -79,7 +79,7 @@ function love.draw()
     love.graphics.clear(0.211764706,0.2,0.223529412)
     for y = 0, height, 64 do
         for x = 0, width, 64 do
-            love.graphics.draw(tile, x, y)
+            love.graphics.draw(tile, x+nodemgr.offsetX, y+nodemgr.offsetY)
         end
     end
 
