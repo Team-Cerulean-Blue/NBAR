@@ -13,7 +13,8 @@ nodemgr.ioElem={
 -- Node "class"
 nodemgr.nodeClass = {
 ["id"] = "default",
-["title"] = "[title]",
+["title"] = "Unknown element",
+["shortTitle"] = "[title]",
 ["about"] = nil,
 ["inputs"] = {},
 ["outputs"] = {},
@@ -56,7 +57,7 @@ end,
     local txtWidth, txt, txtLines = selfvar:getWrappedText()
     -- local txtWidth =font:getWidth(txt)
     local txtHeight=font:getHeight(txt)*txtLines
-    print(txtWidth, txtHeight)
+    -- print(txtWidth, txtHeight)
 
     local rectWidth = txtWidth;
     local rectHeight = math.max(txtHeight,math.max(#selfvar.node.inputs,#selfvar.node.outputs)*nodeIOElemHeight);
