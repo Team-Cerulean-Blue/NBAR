@@ -63,7 +63,7 @@ function love.draw()
 
     love.graphics.clear(0.211764706,0.2,0.223529412)
     love.graphics.setColor(0.9,0.9,0.9)
-    love.graphics.print('NBAR - Node-Based Analog Renderer', width-40, height-20)
+    love.graphics.print('NBAR - Node-Based Analog Renderer', 40, height-20)
 
     nodemgr.drawNodes()
     
