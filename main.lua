@@ -20,8 +20,8 @@ love.window.setTitle("NBAR - Node-Based Analog Renderer")
 local hoverPadding=8
 function renderHover(hover,mx,my)
     local txtWidth, wrappedText = font:getWrap(hover,200)
-    love.graphics.setColor(1,1,0)
-    love.graphics.rectangle("fill",mx,my,txtWidth+hoverPadding*2,font:getHeight(hover)*(#wrappedText)+hoverPadding*2)
+    love.graphics.setColor(0.992156863,0.823529412,0.0509803922)
+    love.graphics.rectangle("fill",mx,my,txtWidth+hoverPadding*2,font:getHeight(hover)*(#wrappedText)+hoverPadding*2,5,5,5)
     love.graphics.setColor(0,0,0)
     love.graphics.print(table.concat(wrappedText,"\n"),mx+hoverPadding,my+hoverPadding)
 end
@@ -74,7 +74,7 @@ end
 function love.draw()
     width, height = love.graphics.getDimensions()
 
-    love.graphics.clear(0.874509804,0.874509804,0.874509804)
+    love.graphics.clear(0.211764706,0.2,0.223529412)
 
     nodemgr.drawNodes()
 
@@ -98,6 +98,6 @@ function love.draw()
     end
 
     -- NBAR text
-    love.graphics.setColor(0.5,0.5,0.5)
-    love.graphics.print('NBAR', width-40, height-20)
+    love.graphics.setColor(0.9,0.9,0.9)
+    love.graphics.print('NBAR - Node-Based Analog Renderer', 5, height-20)
 end
