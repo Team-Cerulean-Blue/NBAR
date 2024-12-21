@@ -7,6 +7,7 @@ function table.shallow_copy(t)
     return t2
 end
 
+vernum = "v0.2.2"
 font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
 tile = love.graphics.newImage("tile.png")
 
@@ -105,5 +106,5 @@ function love.draw()
 
     -- NBAR text
     love.graphics.setColor(0.9,0.9,0.9)
-    love.graphics.print('NBAR - Node-Based Analog Renderer', 5, height-20)
+    love.graphics.print('NBAR - Node-Based Analog Renderer '..vernum, 5, height-20)
 end
