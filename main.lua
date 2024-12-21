@@ -76,8 +76,8 @@ function love.draw()
     width, height = love.graphics.getDimensions()
 
     love.graphics.clear(0.211764706,0.2,0.223529412)
-    for y = 0, screenHeight, tileHeight do
-        for x = 0, screenWidth, tileWidth do
+    for y = 0, height, 64 do
+        for x = 0, width, 64 do
             love.graphics.draw(tile, x, y)
         end
     end
