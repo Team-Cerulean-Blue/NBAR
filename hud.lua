@@ -39,14 +39,14 @@ end
 function hudmgr.render(width,height)
     local mx,my = love.mouse.getPosition()
 
-    love.graphics.setColor(node.color)
+    love.graphics.setColor(0.3,0.3,0.4,0.5)
     love.graphics.rectangle("fill",width-hudWidth,0,hudWidth,height)
 
     local hovered = hudmgr.getHoveredElemIdx(mx,my)
     love.graphics.setColor(0,0,0)
     for i,node in ipairs(hudmgr.nodes) do
         if i==hovered then
-            love.graphics.setColor(0.0,0.572,0.8,0.5)
+            love.graphics.setColor(node.color)
             love.graphics.rectangle("fill",width-hudWidth,(i-1)*20,hudWidth,20)
             love.graphics.setColor(0,0,0)
         end
