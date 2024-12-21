@@ -94,7 +94,7 @@ function love.draw()
     local mx,my = love.mouse.getPosition()
     local hoverMsg=nodemgr.getHoverMessage(mx,my)
     if hoverMsg~=nil then
-        renderHover(hoverMsg,mx,my)
+        renderHover("[i] "..hoverMsg,mx,my)
     end
 
     -- NBAR text
