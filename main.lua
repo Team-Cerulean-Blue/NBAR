@@ -8,6 +8,7 @@ function table.shallow_copy(t)
 end
 
 font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
+tile = love.graphics.newImage("tile.png")
 
 local nodemgr = require("nodes")
 local hud = require("hud")
