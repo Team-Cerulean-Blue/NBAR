@@ -90,9 +90,9 @@ end,
     end
 
     love.graphics.setColor(0,0,0)
-    love.graphics.rectangle("line",rectBox[1],rectBox[2],rectBox[3],rectBox[4])
+    love.graphics.rectangle("line",rectBox[1],rectBox[2],rectBox[3],rectBox[4],10,10,5)
     love.graphics.setColor(1,1,1)
-    love.graphics.rectangle("fill",rectBox[1],rectBox[2],rectBox[3],rectBox[4])
+    love.graphics.rectangle("fill",rectBox[1],rectBox[2],rectBox[3],rectBox[4],10,10,5)
 
     love.graphics.setColor(0,0,0)
     love.graphics.print(wrappedText,rectBox[1]+nodeRenderPadding,rectBox[2]+nodeRenderPadding)
