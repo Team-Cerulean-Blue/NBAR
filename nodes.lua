@@ -89,7 +89,7 @@ end,
         renderIO(input,ioX,ioY)
     end
 
-    love.graphics.setColor(0.1,0.0,0.1)
+    love.graphics.setColor(0.7,0.7,0.7)
     love.graphics.rectangle("line",rectBox[1],rectBox[2],rectBox[3],rectBox[4],5,5,5)
     love.graphics.setColor(0.1,0.1,0.4)
     love.graphics.rectangle("fill",rectBox[1],rectBox[2],rectBox[3],rectBox[4],5,5,5)
