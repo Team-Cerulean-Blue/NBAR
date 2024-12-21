@@ -17,10 +17,10 @@ love.window.setTitle("NBAR - Node-Based Analog Renderer")
 
 local hoverPadding=8
 function renderHover(hover,mx,my)
-    love.graphics.setColor(0,992156863,0,823529412,0,0509803922)
+    love.graphics.setColor(0.992156863,0.823529412,0.0509803922)
     love.graphics.rectangle("fill",mx,my,font:getWidth(hover)+hoverPadding*2,font:getHeight(hover)+hoverPadding*2,5,5,5)
     love.graphics.setColor(0,0,0)
-    love.graphics.print("[i] "..hover,mx+hoverPadding,my+hoverPadding)
+    love.graphics.print(hover,mx+hoverPadding,my+hoverPadding)
 end
 
 mouseDownBef = false
