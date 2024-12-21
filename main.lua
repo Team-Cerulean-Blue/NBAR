@@ -77,9 +77,9 @@ function love.draw()
     width, height = love.graphics.getDimensions()
 
     love.graphics.clear(0.211764706,0.2,0.223529412)
-    for y = 0, height, 64 do
-        for x = 0, width, 64 do
-            love.graphics.draw(tile, x+nodemgr.offsetX, y+nodemgr.offsetY)
+    for y = -64, height+64, 64 do
+        for x = -64, width+64, 64 do
+            love.graphics.draw(tile, x+(nodemgr.offsetX % 64), y+(nodemgr.offsetY % 64))
         end
     end
 
