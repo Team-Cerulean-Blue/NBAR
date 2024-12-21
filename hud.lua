@@ -2,10 +2,25 @@ local hudmgr = {}
 
 hudmgr.nodes = {}
 
-function hudmgr.handleNodeModule(mod)
-    local node = require(mod)(hudmgr.nodemgr);
-    -- print(node)
+function hudmgr.addNodeToHud(node)
+    print("Inserted node "..node.title)
     table.insert(hudmgr.nodes,node)
+end
+
+function hudmgr.handleNodeModule(mod)
+    print("Loading module "..mod.."...")
+    xpcall(function()
+        require(mod)(hudmgr.nodemgr,hudmgr.addNodeToHud)
+        print("Successfully loaded module "..mod..".")
+    end,function(err)
+        print("An error occured while trying to lode the \""..mod.."\" module.\n"..err)
+    end)
+end
+
+function hudmgr.handleNodeModules(mods)
+    for i,mod in ipairs(mods) do
+        hudmgr.handleNodeModule(mod)
+    end
 end
 
 hudWidth = 140
