@@ -7,7 +7,7 @@ function table.shallow_copy(t)
     return t2
 end
 
-font = love.graphics.getFont()
+font = love.graphics.newFont("./ShareTechMono-Regular.ttf")
 
 local nodemgr = require("nodes")
 local hud = require("hud")
