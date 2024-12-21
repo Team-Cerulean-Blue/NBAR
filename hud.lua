@@ -48,7 +48,7 @@ function hudmgr.render(width,height)
         if i==hovered then
             love.graphics.setColor(node.color)
             love.graphics.rectangle("fill",width-hudWidth,(i-1)*20,hudWidth,20)
-            love.graphics.setColor(0,0,0)
+            love.graphics.setColor(1,1,1)
         end
         love.graphics.print(node.shortTitle,width-(hudWidth-4),(i-1)*20+2)
     end
