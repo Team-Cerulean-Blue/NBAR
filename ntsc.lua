@@ -6,7 +6,7 @@ return function(nodemgr,addNode)
     digitalToNTSCNode.about="Node that converts a digital video signal into an NTSC analog signal (Raw)."
     digitalToNTSCNode.inputs={nodemgr.ioElem.digital}
     digitalToNTSCNode.outputs={nodemgr.ioElem.avideo}
-    digitalToNTSCNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
+    digitalToNTSCNode.color={0.35,0.85,0.91,0.2}
     addNode(digitalToNTSCNode)
 
     local NTSCToDigitalNode = table.shallow_copy(nodemgr.nodeClass)
@@ -16,6 +16,6 @@ return function(nodemgr,addNode)
     NTSCToDigitalNode.about="Node that converts an NTSC analog signal (Raw) into a digital video signal."
     NTSCToDigitalNode.inputs={nodemgr.ioElem.avideo}
     NTSCToDigitalNode.outputs={nodemgr.ioElem.digital}
-    NTSCToDigitalNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
+    NTSCToDigitalNode.color={0.98,0.78,0.20,0.2}
     addNode(NTSCToDigitalNode)
 end
