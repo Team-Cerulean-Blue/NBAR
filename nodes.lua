@@ -146,8 +146,12 @@ function nodemgr.configureHoveredNode()
     local hovered = nodemgr.hoveringNode()
     if hovered.node.configure then
         hovered.node.configure(hovered)
-    else if hovered.node.configure == nil then
+    else 
+        if hovered.node.configure == nil then
+        print("You're not hovering on a node.")
+        else
         print("This node does not have a configure function.")
+        end
     end
 end
 
