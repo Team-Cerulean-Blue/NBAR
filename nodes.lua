@@ -144,16 +144,18 @@ end
 -- configuring currently hovered node
 function nodemgr.configureHoveredNode()
     local hovered = nodemgr.hoveringNode()
-    if hovered.node.configure == nil then
+    if not hovered then
         print("You're not hovering on a node.")
-    else 
-        if hovered.node.configure then
+        return
+    end
+    
+    if hovered.node.configure then
         hovered.node.configure(hovered)
-        else
+    else
         print("This node does not have a configure function.")
-        end
     end
 end
+
 
 -- use this to test nodes
 --[[ local myNode = table.shallow_copy(nodemgr.nodeClass)
