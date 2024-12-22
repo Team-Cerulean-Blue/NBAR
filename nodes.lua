@@ -141,6 +141,16 @@ function nodemgr.hoveringNode()
     return nil
 end
 
+-- configuring currently hovered node
+function nodemgr.configureHoveredNode()
+    local hovered = nodemgr.hoveringNode()
+    if hovered.node.configure then
+        hovered.node.configure(hovered)
+    else
+        print("This node does not have a configure function.")
+    end
+end
+
 -- use this to test nodes
 --[[ local myNode = table.shallow_copy(nodemgr.nodeClass)
 myNode.title="Hello, World!"

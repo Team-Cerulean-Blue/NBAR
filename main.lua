@@ -108,3 +108,9 @@ function love.draw()
     love.graphics.setColor(0.9,0.9,0.9)
     love.graphics.print('NBAR - Node-Based Analog Renderer '..vernum, 5, height-20)
 end
+
+function love.keypressed(key,scancode,isrepeat)
+    if key=="space" then
+        nodemgr.configureHoveredNode()
+    end
+end

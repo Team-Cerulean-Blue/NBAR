@@ -6,6 +6,9 @@ return function(nodemgr,addNode)
     videoInputNode.about="Node that returns a digital video file inputted by the user."
     videoInputNode.outputs={nodemgr.ioElem.digital}
     videoInputNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
+    function videoInputNode.configure(screenNode)
+        -- TODO: ask user for mp4 file path or something else related, and set the file path to screenNode.contentFile
+    end
     addNode(videoInputNode)
 
     local audioInputNode = table.shallow_copy(nodemgr.nodeClass)
