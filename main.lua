@@ -1,5 +1,5 @@
 -- polyfills because lua is missing a lot of features for a programming language
-local iup = require("iuplua") -- i only added this for file open dialogs. see ya
+
 function table.shallow_copy(t)
     local t2 = {}
     for k,v in pairs(t) do
