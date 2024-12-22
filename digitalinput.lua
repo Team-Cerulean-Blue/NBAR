@@ -23,7 +23,7 @@ return function(nodemgr,addNode)
         else
             print("error opening file")
         end
-        screenNode.somethingifrogot = opendvi.value
+        screenNode.contentFile = opendvi.value
     end
     addNode(videoInputNode)
 
