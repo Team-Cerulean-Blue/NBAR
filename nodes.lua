@@ -125,8 +125,8 @@ end
 function nodemgr.addNodeToScreen(node)
     local scrnode = table.shallow_copy(nodemgr.screenNodeClass)
     scrnode.node=node
-    scrnode.x=math.random(10,200)
-    scrnode.y=math.random(10,200)
+    scrnode.x=math.random(10,200)+offsetX
+    scrnode.y=math.random(10,200)+offsetY
     table.insert(nodeList,scrnode)
 end
 
