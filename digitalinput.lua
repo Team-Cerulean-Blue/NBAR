@@ -7,23 +7,7 @@ return function(nodemgr,addNode)
     videoInputNode.outputs={nodemgr.ioElem.digital}
     videoInputNode.color={0.49019607843137253,0.8549019607843137,0.34509803921568627,0.2}
     function videoInputNode.configure(screenNode)
-        local opendvi = iup.filedlg{
-            dialogtype = "OPEN",
-            title = "Open digital video",
-            filter = "*.mp4",
-            filterinfo = "Video files",
-        }
-
-        opendvi:popup(iup.CENTER, iup.CENTER) -- Show the dialog
-
-        if opendvi.status == "0" then
-            print("selected file: " .. opendvi.value)
-        elseif opendvi.status == "-1" then
-            print("operation canceled")
-        else
-            print("error opening file")
-        end
-        screenNode.contentFile = opendvi.value
+        -- screenNode.contentFile
     end
     addNode(videoInputNode)
 
