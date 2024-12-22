@@ -17,7 +17,7 @@ function table.shallow_copy(t)
     return t2
 end
 
-vernum = "v0.2.2"
+vernum = "v0.2.4"
 font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
 tile = love.graphics.newImage("tile.png")
 tilenear = love.graphics.newImage("tile-near.png")
