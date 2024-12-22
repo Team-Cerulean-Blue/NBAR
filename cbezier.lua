@@ -26,5 +26,6 @@ function drawBezier(p0, p1, p2, p3, segments)
     end
 
     -- draw the curve
+    love.graphics.setColor(1,1,1,0.7) -- this is the color of node wires [the program only has dark mode as of v0.2.2]
     love.graphics.line(points)
 end
