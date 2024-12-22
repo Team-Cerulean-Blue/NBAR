@@ -11,6 +11,7 @@ end
 vernum = "v0.2.2"
 font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
 tile = love.graphics.newImage("tile.png")
+tilenear = love.graphics.newImage("tile-near.png")
 
 local nodemgr = require("nodes")
 local hud = require("hud")
@@ -78,9 +79,16 @@ function love.draw()
     width, height = love.graphics.getDimensions()
 
     love.graphics.clear(0.211764706,0.2,0.223529412)
+    love.graphics.clear(0.211764706,0.2,0.223529412)
     for y = -64, height+64, 64 do
         for x = -64, width+64, 64 do
-            love.graphics.draw(tile, x+(nodemgr.offsetX % 64), y+(nodemgr.offsetY % 64))
+            love.graphics.draw(tile, x+(nodemgr.offsetX/1.6 % 64), y+(nodemgr.offsetY/1.6 % 64))
+        end
+    end
+
+	for y = -80, height+80, 80 do
+        for x = -80, width+80, 80 do
+            love.graphics.draw(tilenear, x+(nodemgr.offsetX/1.2 % 80), y+(nodemgr.offsetY/1.2 % 80))
         end
     end
 
