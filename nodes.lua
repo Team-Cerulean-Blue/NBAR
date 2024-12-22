@@ -24,6 +24,15 @@ nodemgr.nodeClass = {
 end
 }
 
+-- Node connections
+nodemgr.nodeConnections = {
+    --[[ for example
+        node 1 output 1 = node 2 output 1
+        node 1 output 1 = node 3 output 2
+        node 2 output 1 = node 3 output 1
+    ]]
+}
+
 -- Node I/O rendering
 function renderIO(type,x,y)
     --print(type,x,y)
