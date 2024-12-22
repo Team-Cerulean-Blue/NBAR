@@ -1,5 +1,14 @@
 -- polyfills because lua is missing a lot of features for a programming language
 
+function indexOf(array, value)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+    return nil
+end
+
 function table.shallow_copy(t)
     local t2 = {}
     for k,v in pairs(t) do
@@ -121,5 +130,8 @@ end
 function love.keypressed(key,scancode,isrepeat)
     if key=="space" then
         nodemgr.configureHoveredNode()
+    end
+    if key=="backspace" or key=="delete" then
+        nodemgr.removeHoveredNode()
     end
 end

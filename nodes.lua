@@ -156,6 +156,18 @@ function nodemgr.configureHoveredNode()
     end
 end
 
+-- removing currently hovered node
+function nodemgr.removeHoveredNode()
+    local hovered = nodemgr.hoveringNode()
+    if not hovered then
+        print("You're not hovering on a node.")
+        return
+    end
+
+    idx = indexOf(nodeList,hovered)
+    table.remove(nodeList,idx)
+end
+
 
 -- use this to test nodes
 --[[ local myNode = table.shallow_copy(nodemgr.nodeClass)
