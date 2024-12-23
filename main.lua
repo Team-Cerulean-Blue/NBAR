@@ -55,7 +55,7 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-local hoveringConnector = {nodemgr.findHoveredNodebit()
+local hoveringConnector = {nodemgr.findHoveredNodebit()}
     if(not mouseDownBef) then
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
