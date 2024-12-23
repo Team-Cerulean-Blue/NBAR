@@ -28,9 +28,9 @@ end
 nodemgr.nodeConnections = {
     -- TODO: actually make this work
     --[[ for example
-        node 1 output 1 = node 2 output 1
-        node 1 output 1 = node 3 output 2
-        node 2 output 1 = node 3 output 1
+        node 1 output 1 = node 2 input 1
+        node 1 output 1 = node 3 input 2
+        node 2 output 1 = node 3 input 1
     ]]
 }
 
