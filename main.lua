@@ -60,7 +60,7 @@ function handleDrag()
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
 	    if(hoveringConnector~=nil) then
-		if(isOutputConnector=true) then
+		if(isOutputConnector==true) then
 		    -- connecting something new
 		    -- TODO: save node being clicked, draw bezier curve from connector center to mouse position using cbezier.lua
 		    draggingNode=false
