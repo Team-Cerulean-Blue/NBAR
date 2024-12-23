@@ -216,7 +216,7 @@ end
 
 function nodemgr.findHoveredNodebit(mx,my)
     for i, scrnode in ipairs(nodeList) do
-        local bbox = selfvar:getBbox()
+        local bbox = scrnode:getBbox()
         if mx>=bbox[1]-nodeIOElemHeight/2 and mx<=bbox[3]+nodeIOElemHeight/2 and my>=bbox[2] and my<=bbox[4] then
             return nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
         end
