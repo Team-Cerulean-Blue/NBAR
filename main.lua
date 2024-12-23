@@ -26,7 +26,6 @@ font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
 tile = love.graphics.newImage("tile.png")
 tilenear = love.graphics.newImage("tile-near.png")
 
-local cubic = require("cbezier")
 local nodemgr = require("nodes")
 local hud = require("hud")
 hud.nodemgr = nodemgr
@@ -63,12 +62,12 @@ function handleDrag()
 	    if(hoveringConnector~=nil) then
 		if(isOutputConnector==true) then
 		    -- connecting something new
-		    -- TODO: save node being clicked, draw bezier curve from connector center to mouse position using cbezier.lua
+		    -- TODO: save node being clicked, draw bezier curve from connector center to mouse position
 		    draggingNode=false
-		    cubic.drawBezier(40,40,mx,my,15)
+		    
 		else
 		    -- disconnecting existing connector
-		    -- TODO: check for instances of the node connector being used in connection list, if used, disconnect and draw bezier curve from the previously connected node's output to the mouse position with cbezier.lua
+		    -- TODO: check for instances of the node connector being used in connection list, if used, disconnect and draw bezier curve from the previously connected node's output to the mouse position
 		    draggingNode=false
 		end
 	    else
