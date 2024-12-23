@@ -55,7 +55,6 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-local hoveringConnector = {nodemgr.findHoveredNodebit(hoveringNode,mx,my)}
     if(not mouseDownBef) then
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
@@ -64,8 +63,6 @@ local hoveringConnector = {nodemgr.findHoveredNodebit(hoveringNode,mx,my)}
             dragStartX=mx-hoveringNode.x
             dragStartY=my-hoveringNode.y
             nodeToDrag=hoveringNode
-        elseif(hoveringConnector[1]) then
-            drawBezier(1,11,mx,my,5)
 	else
             -- dragging canvas
             draggingNode=false
