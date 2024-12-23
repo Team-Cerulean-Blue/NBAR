@@ -1,4 +1,4 @@
-o-- polyfills because lua is missing a lot of features for a programming language
+-- polyfills because lua is missing a lot of features for a programming language
 
 function indexOf(array, value)
     for i, v in ipairs(array) do
