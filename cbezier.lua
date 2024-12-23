@@ -1,3 +1,5 @@
+local cubic = {}
+
 -- calculate a point on a cubic bezier curve
 function cubicBezier(t, p0, p1, p2, p3)
     local u = 1 - t
@@ -29,3 +31,5 @@ function cubic.drawBezier(p0, p1, p2, p3, segments)
     love.graphics.setColor(1,1,1,0.7) -- this is the color of node wires [the program only has dark mode as of v0.2.2]
     love.graphics.line(points)
 end
+
+return cubic
