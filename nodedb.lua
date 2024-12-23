@@ -1,10 +1,13 @@
 --[[
 color palette (by category in rgb)
-0.5 0.9 0.3 - input
+0.5 0.9 0.3 - inputs
 0.8 0.1 0.8 - effects
 0.4 0.9 0.9 - converter
 ]]--
 return function(nodemgr,addNode)
+
+    -- EFFECTS
+
     local monoNTSCNoiseNode = table.shallow_copy(nodemgr.nodeClass)
     monoNTSCNoiseNode.title="Monochrome noise [ANALOG]"
     monoNTSCNoiseNode.shortTitle="Monochrome noise [A]"
@@ -14,6 +17,18 @@ return function(nodemgr,addNode)
     monoNTSCNoiseNode.outputs={nodemgr.ioElem.avideo}
     monoNTSCNoiseNode.color={0.8,0.1,0.8,0.2}
     addNode(monoNTSCNoiseNode)
+
+    local NTSCEQNode = table.shallow_copy(nodemgr.nodeClass)
+    NTSCEQNode.title="Equalizer [ANALOG]"
+    NTSCEQNode.shortTitle="Equalizer [A]"
+    NTSCEQNode.id="ntsc-equalizer"
+    NTSCEQNode.about="Changes the volume of select frequencies."
+    NTSCEQNode.inputs={nodemgr.ioElem.avideo}
+    NTSCEQNode.outputs={nodemgr.ioElem.avideo}
+    NTSCEQNode.color={0.8,0.1,0.8,0.2}
+    addNode(NTSCEQNode)
+
+    -- INPUTS
 
     local videoInputNode = table.shallow_copy(nodemgr.nodeClass)
     videoInputNode.title="Video input [DIGITAL]"
@@ -44,6 +59,8 @@ return function(nodemgr,addNode)
     AVInputNode.outputs={nodemgr.ioElem.digital,nodemgr.ioElem.digital}
     AVInputNode.color={0.5,0.9,0.3,0.2}
     addNode(AVInputNode)
+
+    -- CONVERTERS
 
     local digitalToNTSCNode = table.shallow_copy(nodemgr.nodeClass)
     digitalToNTSCNode.title="[DIGITAL] video to [ANALOG]"
