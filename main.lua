@@ -26,7 +26,7 @@ font = love.graphics.setNewFont("ShareTechMono-Regular.ttf")
 tile = love.graphics.newImage("tile.png")
 tilenear = love.graphics.newImage("tile-near.png")
 
-local cubic = require("cubic")
+local cubic = require("cbezier")
 local nodemgr = require("nodes")
 local hud = require("hud")
 hud.nodemgr = nodemgr
