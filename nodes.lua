@@ -193,7 +193,7 @@ function makeIOBbox(scrnode,nodebbox,idx,isOutput)
 end
 
 -- get currently hovered node IO
-function nodemgr.findHoveredNodebit(scrnode,mx,my)
+function nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
     -- nodemgr.hoveringNode() probably won't work in this specific case because node IO doesn't cound as part of the node
     -- returns: nodebit, nodebit index, boolean that is true if nodebit is output
     local nodebbox = scrnode:getBboxRect()
@@ -212,6 +212,15 @@ function nodemgr.findHoveredNodebit(scrnode,mx,my)
         end
     end
     -- todo: get it workin
+end
+
+function nodemgr.findHoveredNodebit(mx,my)
+    for i, scrnode in ipairs(nodeList) do
+        local bbox = selfvar:getBbox()
+        if mx>=bbox[1]-nodeIOElemHeight/2 and mx<=bbox[3]+nodeIOElemHeight/2 and my>=bbox[2] and my<=bbox[4] then
+            return nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
+        end
+    end
 end
 
 -- use this to test nodes
