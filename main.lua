@@ -1,4 +1,4 @@
--- polyfills because lua is missing a lot of features for a programming language
+o-- polyfills because lua is missing a lot of features for a programming language
 
 function indexOf(array, value)
     for i, v in ipairs(array) do
@@ -55,7 +55,7 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-local hoveringConnector = {nodemgr.findHoveredNodebit()}
+local hoveringConnector = {nodemgr.findHoveredNodebit(hoveringNode,mx,my)}
     if(not mouseDownBef) then
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
