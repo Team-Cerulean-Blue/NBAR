@@ -64,6 +64,7 @@ function handleDrag()
 		    -- connecting something new
 		    -- TODO: save node being clicked, draw bezier curve from connector center to mouse position using cbezier.lua
 		    draggingNode=false
+		    cubic.drawBezier(40,40,mx,my,15)
 		else
 		    -- disconnecting existing connector
 		    -- TODO: check for instances of the node connector being used in connection list, if used, disconnect and draw bezier curve from the previously connected node's output to the mouse position with cbezier.lua
