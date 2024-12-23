@@ -56,13 +56,26 @@ function handleDrag()
         return nil
     end
     if(not mouseDownBef) then
+	local hoveringConnector,hoveredConnectorIDX,isOutputConnector = nodemgr.findHoveredNodebit()
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
-            -- dragging node
-            draggingNode=true
-            dragStartX=mx-hoveringNode.x
-            dragStartY=my-hoveringNode.y
-            nodeToDrag=hoveringNode
+	    if(hoveringConnector~=nil) then
+		if(isOutputConnector=true) then
+		    -- connecting something new
+		    -- TODO: save node being clicked, draw bezier curve from connector center to mouse position using cbezier.lua
+		    draggingNode=false
+		else
+		    -- disconnecting existing connector
+		    -- TODO: check for instances of the node connector being used in connection list, if used, disconnect and draw bezier curve from the previously connected node's output to the mouse position with cbezier.lua
+		    draggingNode=false
+		end
+	    else
+            	-- dragging node
+            	draggingNode=true
+            	dragStartX=mx-hoveringNode.x
+            	dragStartY=my-hoveringNode.y
+            	nodeToDrag=hoveringNode
+	    end
 	else
             -- dragging canvas
             draggingNode=false
