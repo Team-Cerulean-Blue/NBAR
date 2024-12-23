@@ -25,7 +25,7 @@ tilenear = love.graphics.newImage("tile-near.png")
 local nodemgr = require("nodes")
 local hud = require("hud")
 hud.nodemgr = nodemgr
-hud.handleNodeModules({"digitalinput","ntsc","analogeffects"})
+hud.handleNodeModules({"nodedb"})
 
 love.window.setMode(800, 600, {resizable = true, minwidth = 480, minheight = 360})
 love.window.setTitle("NBAR - Node-Based Analog Renderer")
