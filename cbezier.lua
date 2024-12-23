@@ -14,7 +14,7 @@ function cubicBezier(t, p0, p1, p2, p3)
 end
 
 -- draw the bezier curve as a series of line segments
-function drawBezier(p0, p1, p2, p3, segments)
+function cubic.drawBezier(p0, p1, p2, p3, segments)
     local points = {}
 
     -- calculate points along the curve
