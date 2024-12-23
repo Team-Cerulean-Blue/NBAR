@@ -56,7 +56,7 @@ function handleDrag()
         return nil
     end
     if(not mouseDownBef) then
-	local hoveringConnector,hoveredConnectorIDX,isOutputConnector = nodemgr.findHoveredNodebit()
+	local hoveringConnector,hoveredConnectorIDX,isOutputConnector = nodemgr.findHoveredNodebit(mx, my)
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
 	    if(hoveringConnector~=nil) then
