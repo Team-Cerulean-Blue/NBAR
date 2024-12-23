@@ -55,7 +55,7 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-
+local hoveringConnector = {nodemgr.findHoveredNodebit()
     if(not mouseDownBef) then
         local hoveringNode = nodemgr.hoveringNode()
         if(hoveringNode~=nil) then
@@ -73,6 +73,8 @@ function handleDrag()
     elseif(draggingNode) then
         nodeToDrag.x=mx-dragStartX
         nodeToDrag.y=my-dragStartY
+    elseif(hoveringConnector[1])
+        drawBezier(1,11,mx,my,5)
     else
         nodemgr.offsetX=mx-dragStartX
         nodemgr.offsetY=my-dragStartY
