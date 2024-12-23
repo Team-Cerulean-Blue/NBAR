@@ -64,7 +64,9 @@ local hoveringConnector = {nodemgr.findHoveredNodebit()
             dragStartX=mx-hoveringNode.x
             dragStartY=my-hoveringNode.y
             nodeToDrag=hoveringNode
-        else
+        elseif(hoveringConnector[1])
+            drawBezier(1,11,mx,my,5)
+	else
             -- dragging canvas
             draggingNode=false
             dragStartX=mx-nodemgr.offsetX
@@ -73,8 +75,6 @@ local hoveringConnector = {nodemgr.findHoveredNodebit()
     elseif(draggingNode) then
         nodeToDrag.x=mx-dragStartX
         nodeToDrag.y=my-dragStartY
-    elseif(hoveringConnector[1])
-        drawBezier(1,11,mx,my,5)
     else
         nodemgr.offsetX=mx-dragStartX
         nodemgr.offsetY=my-dragStartY
