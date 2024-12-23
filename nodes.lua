@@ -186,6 +186,12 @@ function nodemgr.removeHoveredNode()
     table.remove(nodeList,idx)
 end
 
+-- get currently hovered node IO
+function nodemgr.findHoveredNodebit()
+    local hoveredIO = 0  -- nodemgr.hoveringNode() probably won't work in this specific case because node IO doesn't cound as part of the node
+    return hoveredIO
+    -- todo: get it workin
+end
 
 -- use this to test nodes
 --[[ local myNode = table.shallow_copy(nodemgr.nodeClass)
