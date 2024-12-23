@@ -9,6 +9,10 @@ function indexOf(array, value)
     return nil
 end
 
+function inRect(x,y,bx,by,bw,bh)
+    return x>=bx and x<bx+bw and y>=by and y<by+bh
+end
+
 function table.shallow_copy(t)
     local t2 = {}
     for k,v in pairs(t) do

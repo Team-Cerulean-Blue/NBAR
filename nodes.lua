@@ -186,10 +186,31 @@ function nodemgr.removeHoveredNode()
     table.remove(nodeList,idx)
 end
 
+function makeIOBbox(scrnode,nodebbox,idx,isOutput)
+    local x=nodebbox[1]+nodebbox[3]*isOutput
+    local y=nodebbox[2]+(idx-0.5)*nodeIOElemHeight+nodeRenderPadding
+    return {x-nodeIOElemHeight/2,y-nodeIOElemHeight/2,nodeIOElemHeight,nodeIOElemHeight}
+end
+
 -- get currently hovered node IO
-function nodemgr.findHoveredNodebit()
-    local hoveredIO = 0  -- nodemgr.hoveringNode() probably won't work in this specific case because node IO doesn't cound as part of the node
-    return hoveredIO
+function nodemgr.findHoveredNodebit(scrnode,mx,my)
+    -- nodemgr.hoveringNode() probably won't work in this specific case because node IO doesn't cound as part of the node
+    -- returns: nodebit, nodebit index, boolean that is true if nodebit is output
+    local nodebbox = scrnode:getBboxRect()
+
+    for i,val in ipairs(scrnode.node.inputs) do
+        local bbox = makeIOBbox(scrnode,nodebbox,i,0)
+        if inRect(mx,my,bbox[1],bbox[2],bbox[3],bbox[4]) then
+            return val,i,false
+        end
+    end
+
+    for i,val in ipairs(scrnode.node.outputs) do
+        local bbox = makeIOBbox(scrnode,nodebbox,i,1)
+        if inRect(mx,my,bbox[1],bbox[2],bbox[3],bbox[4]) then
+            return val,i,true
+        end
+    end
     -- todo: get it workin
 end
 
