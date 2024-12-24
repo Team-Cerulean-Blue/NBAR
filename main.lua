@@ -114,7 +114,8 @@ function love.draw()
             handleClick()
         end
         handleDrag()
-    end    mousedownBef=mouseDown
+    end
+    mouseDownBef=mouseDown
 
     hud.render(width,height)
 
