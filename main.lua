@@ -55,10 +55,10 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-    if(not mouseDownBef) then
+    if not mouseDownBef then
 	local hoveringConnector,hoveredConnectorIDX,isOutputConnector = nodemgr.findHoveredNodebit(mx, my)
         local hoveringNode = nodemgr.hoveringNode()
-        if(hoveringNode~=nil) then
+        if hoveringNode~=nil then
             -- dragging node
             draggingNode=true
             dragStartX=mx-hoveringNode.x
@@ -77,6 +77,15 @@ function handleDrag()
         nodemgr.offsetX=mx-dragStartX
         nodemgr.offsetY=my-dragStartY
     end
+    if hoveringConnector~=nil then
+	if isOutputConnector==true then
+ 		-- creating new wire
+		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,true), mx, my)
+	else
+		-- disconnecting preexisting wire
+		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,false), mx, my)
+	end
+    end -- yourself NOW!!
 end
 
 function handleClick()
@@ -114,8 +123,7 @@ function love.draw()
             handleClick()
         end
         handleDrag()
-    end
-    mouseDownBef=mouseDown
+    end    mousedownBef=mouseDown
 
     hud.render(width,height)
 
