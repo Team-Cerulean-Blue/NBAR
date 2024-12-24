@@ -77,15 +77,6 @@ function handleDrag()
         nodemgr.offsetX=mx-dragStartX
         nodemgr.offsetY=my-dragStartY
     end
-    if hoveringConnector~=nil then
-	if isOutputConnector==true then
- 		-- creating new wire
-		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,true), mx, my)
-	else
-		-- disconnecting preexisting wire
-		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,false), mx, my)
-	end
-    end -- yourself NOW!!
 end
 
 function handleClick()
