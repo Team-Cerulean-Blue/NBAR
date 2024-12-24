@@ -192,6 +192,11 @@ function makeIOBbox(scrnode,nodebbox,idx,isOutput)
     return {x-nodeIOElemHeight/2,y-nodeIOElemHeight/2,nodeIOElemHeight,nodeIOElemHeight}
 end
 
+function nodemgr.getConnectorCenterPosition(scrnode,idx,isOutput)
+    local bbox = makeIOBbox(scrnode,scrnode:getBbox(),idx,isOutput)
+    return {bbox[1]+bbox[3]/2,bbox[2]+bbox[4]/2}
+end
+
 -- get currently hovered node IO
 function nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
     -- nodemgr.hoveringNode() probably won't work in this specific case because node IO doesn't cound as part of the node
