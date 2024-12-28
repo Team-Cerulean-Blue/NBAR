@@ -186,15 +186,15 @@ function nodemgr.removeHoveredNode()
     table.remove(nodeList,idx)
 end
 
-function makeIOBbox(scrnode,nodebbox,idx,isOutput)
-    local x=nodebbox[1]+nodebbox[3]*isOutput
+function nodemgr.makeIOBbox(scrnode,nodebbox,idx,isOutput)
+    local x=nodebbox[1]+nodebbox[3]*(isOutput and 1 or 0)
     local y=nodebbox[2]+(idx-0.5)*nodeIOElemHeight+nodeRenderPadding
     return {x-nodeIOElemHeight/2,y-nodeIOElemHeight/2,nodeIOElemHeight,nodeIOElemHeight}
 end
 
 function nodemgr.getConnectorCenterPosition(scrnode,idx,isOutput)
-    local bbox = makeIOBbox(scrnode,scrnode:getBbox(),idx,isOutput)
-    return {bbox[1]+bbox[3]/2,bbox[2]+bbox[4]/2}
+    local bbox = nodemgr.makeIOBbox(scrnode,scrnode:getBboxRect(),idx,isOutput)
+    return bbox[1]+bbox[3]/2,bbox[2]+bbox[4]/2
 end
 
 -- get currently hovered node IO
@@ -204,14 +204,14 @@ function nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
     local nodebbox = scrnode:getBboxRect()
 
     for i,val in ipairs(scrnode.node.inputs) do
-        local bbox = makeIOBbox(scrnode,nodebbox,i,0)
+        local bbox = nodemgr.makeIOBbox(scrnode,nodebbox,i,false)
         if inRect(mx,my,bbox[1],bbox[2],bbox[3],bbox[4]) then
             return val,i,false
         end
     end
 
     for i,val in ipairs(scrnode.node.outputs) do
-        local bbox = makeIOBbox(scrnode,nodebbox,i,1)
+        local bbox = nodemgr.makeIOBbox(scrnode,nodebbox,i,true)
         if inRect(mx,my,bbox[1],bbox[2],bbox[3],bbox[4]) then
             return val,i,true
         end
@@ -223,7 +223,8 @@ function nodemgr.findHoveredNodebit(mx,my)
     for i, scrnode in ipairs(nodeList) do
         local bbox = scrnode:getBbox()
         if mx>=bbox[1]-nodeIOElemHeight/2 and mx<=bbox[3]+nodeIOElemHeight/2 and my>=bbox[2] and my<=bbox[4] then
-            return nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
+            local val,i,out = nodemgr.findHoveredNodebitFromNode(scrnode,mx,my)
+            return val,i,out,scrnode
         end
     end
 end

@@ -48,6 +48,8 @@ dragStartX=0
 dragStartY=0
 draggingNode=nil
 nodeToDrag=nil
+draggingConnector=nil
+connectorToDrag=nil
 
 function handleDrag()
     local mx,my = love.mouse.getPosition()
@@ -55,37 +57,72 @@ function handleDrag()
     if hud.touching(mx,my,width,height) then
         return nil
     end
-    if not mouseDownBef then
-	local hoveringConnector,hoveredConnectorIDX,isOutputConnector = nodemgr.findHoveredNodebit(mx, my)
-        local hoveringNode = nodemgr.hoveringNode()
-        if hoveringNode~=nil then
-            -- dragging node
-            draggingNode=true
-            dragStartX=mx-hoveringNode.x
-            dragStartY=my-hoveringNode.y
-            nodeToDrag=hoveringNode
-	else
-            -- dragging canvas
-            draggingNode=false
-            dragStartX=mx-nodemgr.offsetX
-            dragStartY=my-nodemgr.offsetY
+    if not mouseDownBef then -- started dragging
+        local hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode = nodemgr.findHoveredNodebit(mx, my)
+        if hoveringConnector~=nil then
+            -- dragging connector
+            draggingConnector=true
+            connectorToDrag={hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode}
+        else
+            draggingConnector=false
+            local hoveringNode = nodemgr.hoveringNode()
+            if hoveringNode~=nil then
+                -- dragging node
+                draggingNode=true
+                dragStartX=mx-hoveringNode.x
+                dragStartY=my-hoveringNode.y
+                nodeToDrag=hoveringNode
+            else
+                -- dragging canvas
+                draggingNode=false
+                dragStartX=mx-nodemgr.offsetX
+                dragStartY=my-nodemgr.offsetY
+            end
         end
-    elseif(draggingNode) then
-        nodeToDrag.x=mx-dragStartX
-        nodeToDrag.y=my-dragStartY
-    else
-        nodemgr.offsetX=mx-dragStartX
-        nodemgr.offsetY=my-dragStartY
+    else -- currently dragging
+        if draggingConnector then
+            local hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode = unpack(connectorToDrag)
+            -- print(hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode)
+            local cx, cy = nodemgr.getConnectorCenterPosition(connectorNode,hoveredConnectorIDX,isOutputConnector)
+            love.graphics.line(cx, cy, mx, my)
+        else
+            if(draggingNode) then
+                nodeToDrag.x=mx-dragStartX
+                nodeToDrag.y=my-dragStartY
+            else
+                nodemgr.offsetX=mx-dragStartX
+                nodemgr.offsetY=my-dragStartY
+            end
+        end
     end
-	 if hoveringConnector~=nil then
-	if isOutputConnector==true then
- 		-- creating new wire
-		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,true), mx, my)
-	else
-		-- disconnecting preexisting wire
-		love.graphics.line(nodemgr.getConnectorCenterPosition(hoveringNode,hoveredConnectorIDX,false), mx, my)
-	end
-    end -- yourself NOW!!
+end
+
+function handleConnectorSet(startConnector,startConnectorIDX,isStartOutput,startNode,endConnector,endConnectorIDX,isEndOutput,endNode)
+    table.insert(nodemgr.nodeConnections,
+        {["output"]={startConnector,startConnectorIDX,isStartOutput,startNode}
+        ,["input"]={endConnector,endConnectorIDX,isEndOutput,endNode}}
+    )
+end
+
+function handleDragEnd()
+    local mx,my = love.mouse.getPosition()
+    if draggingConnector then
+        local startConnector,startConnectorIDX,isStartOutput,startNode = unpack(connectorToDrag)
+        local endConnector,endConnectorIDX,isEndOutput,endNode = nodemgr.findHoveredNodebit(mx, my)
+        if isStartOutput==isEndOutput then
+            if isStartOutput then
+                print("You cannot connect outputs to other outputs.")
+            else
+                print("You cannot connect inputs to other inputs.")
+            end
+        else
+            if isStartOutput then
+                handleConnectorSet(endConnector,endConnectorIDX,isEndOutput,endNode,startConnector,startConnectorIDX,isStartOutput,startNode)
+            else
+                handleConnectorSet(startConnector,startConnectorIDX,isStartOutput,startNode,endConnector,endConnectorIDX,isEndOutput,endNode)
+            end
+        end
+    end
 end
 
 function handleClick()
@@ -97,7 +134,26 @@ function handleClick()
     end
 end
 
+function drawConnectorHover(mx,my)
+    local hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode = nodemgr.findHoveredNodebit(mx, my)
+    -- print(hoveringConnector,hoveredConnectorIDX,isOutputConnector,connectorNode)
+    if hoveringConnector then
+        local bbox = nodemgr.makeIOBbox(connectorNode,connectorNode:getBboxRect(),hoveredConnectorIDX,isOutputConnector)
+        love.graphics.setColor(1,1,1,0.4)
+        love.graphics.rectangle("fill",bbox[1],bbox[2],bbox[3],bbox[4])
+    end
+end
+
+function drawConnectors()
+    for i,value in ipairs(nodemgr.nodeConnections) do
+        local ox, oy = nodemgr.getConnectorCenterPosition(value.output[4],value.output[2],value.output[3])
+        local ix, iy = nodemgr.getConnectorCenterPosition(value.input[4],value.input[2],value.input[3])
+        love.graphics.line(ox, oy, ix, iy)
+    end
+end
+
 function love.draw()
+    local mx,my = love.mouse.getPosition()
     width, height = love.graphics.getDimensions()
 
     love.graphics.clear(0.211764706,0.2,0.223529412)
@@ -116,6 +172,9 @@ function love.draw()
 
     nodemgr.drawNodes()
 
+    -- connectors
+    drawConnectors()
+
     -- dragging
     local mouseDown = love.mouse.isDown(1)
     if(mouseDown) then
@@ -123,13 +182,17 @@ function love.draw()
             handleClick()
         end
         handleDrag()
+    elseif mouseDownBef then
+        handleDragEnd()
     end
     mouseDownBef=mouseDown
 
     hud.render(width,height)
 
+    -- connector hover
+    drawConnectorHover(mx,my)
+
     -- hover message
-    local mx,my = love.mouse.getPosition()
     local hoverMsg=nodemgr.getHoverMessage(mx,my)
     if hoverMsg~=nil then
         renderHover("[i] "..hoverMsg,mx,my)
