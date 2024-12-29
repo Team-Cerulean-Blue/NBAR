@@ -109,6 +109,9 @@ function handleDragEnd()
     if draggingConnector then
         local startConnector,startConnectorIDX,isStartOutput,startNode = unpack(connectorToDrag)
         local endConnector,endConnectorIDX,isEndOutput,endNode = nodemgr.findHoveredNodebit(mx, my)
+        if endConnector==nil then
+            return nil
+        end
         if isStartOutput==isEndOutput then
             if isStartOutput then
                 print("You cannot connect outputs to other outputs.")
